@@ -1,0 +1,9 @@
+{
+  "name": "nodejs-api-simple",
+  "description": "A simple API with Nodejs and Express 4",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~4.4.1"
+  }
+}
