@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "~4.4.1"
+    "fortune": "~0.2.2",
+    "fortune-mongodb": "~0.2.0"
+
   }
 }
