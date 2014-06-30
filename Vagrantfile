@@ -7,6 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "phusion-open-ubuntu-14.04-amd64"
 
     config.vm.network "forwarded_port", guest: 8080, host: 8080
+    config.vm.network "forwarded_port", guest: 5858, host: 5858
 
     config.vm.provision "docker" do |d|
     end
