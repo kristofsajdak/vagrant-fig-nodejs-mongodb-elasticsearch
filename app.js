@@ -3,9 +3,15 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var _ = require('lodash');
 var mongoose = require('mongoose');
+var uuid = require('node-uuid');
 
-mongoose.connect('mongodb://' + process.env.DB_PORT_27017_TCP_ADDR + ':' + process.env.DB_PORT_27017_TCP_PORT +'/test');
-var Photo = mongoose.model('Photo', { name: String });
+mongoose.connect('mongodb://' + process.env.DB_PORT_27017_TCP_ADDR + ':' + process.env.DB_PORT_27017_TCP_PORT + '/test');
+var Photo = mongoose.model('Photo', {
+    name: String,
+    id: { type: String, default: function () {
+        return uuid();
+    } }
+});
 
 var app = express();
 app.use(bodyParser());
@@ -15,16 +21,21 @@ app.get('/', function (req, res) {
     res.send('API server up and running !');
 });
 
-
 app.post('/photos', function (req, res, next) {
     var body = req.body;
+    if (body.id) {
+        throw new Error();//400 error
+    }
     var photo = new Photo(body);
+
     photo.save(function (err) {
         if (err) throw err;
-        res.send(photo);
+        var photoObj = photo.toObject();
+        delete photoObj._id;
+        delete photoObj.__v;
+        res.send(JSON.stringify(photoObj));
     });
 });
-
 
 app.use(function (err, req, res, next) {
     console.error(err.stack);
