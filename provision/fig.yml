@@ -4,7 +4,6 @@ web:
       - db:db
   ports:
     - "8080:8080"
-    - "5858:5858"
   environment:
     PORT: 8080
   volumes:
