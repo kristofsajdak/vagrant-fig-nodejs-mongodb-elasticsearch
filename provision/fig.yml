@@ -5,9 +5,7 @@ web:
   ports:
     - "8080:8080"
   environment:
-    - NODE_ENV: "sandbox"
-  command:
-    forever -w app.js
+    PORT: 8080
   volumes:
      - /src:/data
 db:
