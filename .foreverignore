@@ -1,4 +1,4 @@
 **/.idea/**
 **/.git/**
-**/.vagrant/**
 **/node_modules/**
+**/provision/**
