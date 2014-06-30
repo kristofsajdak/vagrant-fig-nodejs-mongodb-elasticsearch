@@ -1,8 +1,10 @@
 
 Nodejs:
 -------
-docker run -v /vagrant:/src -w /src -it --rm --link db:db -p 8080:8080 -e "PORT=8080" dockerfile/nodejs bash
+
+fig run web npm prune ;
+fig run web npm install ;
 
 Mongo:
 ------
-docker run -v /vagrant:/src -w /src -it --rm --link db:db dockerfile/mongodb bash -c 'mongo --host $DB_PORT_27017_TCP_ADDR'
+fig run db /bin/sh -c "mongo \$DB_1_PORT_27017_TCP_ADDR"
