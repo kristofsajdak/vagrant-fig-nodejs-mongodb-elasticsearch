@@ -16,11 +16,13 @@ http://192.168.50.4:8080/
 Ad-hoc commands
 ---------------
 
+First
+
 ```bash
 vagrant ssh
 ```
 
-and
+And
 
 ```bash
 fig run web npm prune
