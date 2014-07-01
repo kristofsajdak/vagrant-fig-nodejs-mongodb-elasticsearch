@@ -7,6 +7,12 @@ cd provision
 vagrant up
 ```
 
+When vagrant is up and running, type in following url to check whether evreything is up and running
+
+```
+http://192.168.50.4:8080/
+```
+
 Ad-hoc commands
 ---------------
 
