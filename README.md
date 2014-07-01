@@ -7,7 +7,7 @@ cd provision
 vagrant up
 ```
 
-When vagrant is up and running, type in following url to check whether everything is up and running
+When vagrant is up and running, type in following url to verify
 
 ```
 http://192.168.50.4:8080/
