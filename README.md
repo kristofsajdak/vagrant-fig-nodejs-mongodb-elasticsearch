@@ -1,6 +1,6 @@
 
 Getting Started
-===============
+---------------
 
 ```bash
 cd provision
@@ -8,7 +8,7 @@ vagrant up
 ```
 
 Ad-hoc commands
-===============
+---------------
 
 ```bash
 vagrant ssh
