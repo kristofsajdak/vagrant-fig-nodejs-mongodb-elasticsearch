@@ -30,19 +30,19 @@ cd vagrant-fig-nodejs-mongodb-elasticsearch/provision
 vagrant up
 ```
 
-When vagrant is up
 
-Check Nodejs and Express, type in your browser :
+
+Check Nodejs and Express:
 ```
 http://192.168.50.4:8080/
 ```
 
-Launch node-inspector, type in your browser :
+Launch node-inspector:
 ```
 http://192.168.50.4:8081/debug
 ```
 
-Check Elasticsearch, type in your browser :
+Check Elasticsearch:
 ```
 http://192.168.50.4:9200
 ```
@@ -55,7 +55,7 @@ ssh into the Vagrant box
 vagrant ssh
 ```
 
-Launch some frequently used ad-hoc commands
+Launch some often required ad-hoc commands
 ```bash
 
 fig run web npm prune
