@@ -27,7 +27,8 @@ vagrant plugin install vagrant-cachier
 
 Then
 ```bash
-cd provision
+git clone https://github.com/kristofsajdak/vagrant-fig-nodejs-mongodb-elasticsearch
+cd vagrant-fig-nodejs-mongodb-elasticsearch/provision
 vagrant up
 ```
 
