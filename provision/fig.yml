@@ -10,7 +10,6 @@ web:
     - "8081"
   environment:
     NODE_ENV: sandbox
-    PORT: 8080
   command: /usr/bin/supervisord
   volumes:
      - /src:/data

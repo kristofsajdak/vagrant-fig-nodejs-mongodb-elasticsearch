@@ -10,31 +10,29 @@ Just work through the Getting Started section and you are good to go !
 Getting Started
 ---------------
 
-Download and install Vagrant :
+First of all, download and install the enabling software
+
+Vagrant :
 ```
 https://www.vagrantup.com/downloads
 ```
 
-Download and install Virtualbox for your host os :
+Virtualbox:
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
 
-OPTIONAL : Install vagrant-cachier to cache packages across various VMs
-```bash
-vagrant plugin install vagrant-cachier
-```
+Clone the repo and vagrant up
 
-Then
 ```bash
 git clone https://github.com/kristofsajdak/vagrant-fig-nodejs-mongodb-elasticsearch
 cd vagrant-fig-nodejs-mongodb-elasticsearch/provision
 vagrant up
 ```
 
-When vagrant is up and running
+When vagrant is up
 
-To verify that Nodejs and express is up and running, type in your browser :
+Check Nodejs and Express, type in your browser :
 ```
 http://192.168.50.4:8080/
 ```
@@ -42,6 +40,11 @@ http://192.168.50.4:8080/
 Launch node-inspector, type in your browser :
 ```
 http://192.168.50.4:8081/debug
+```
+
+Check Elasticsearch, type in your browser :
+```
+http://192.168.50.4:9200
 ```
 
 Ad-hoc commands
@@ -52,11 +55,12 @@ ssh into the Vagrant box
 vagrant ssh
 ```
 
-Launch some typical ad-hoc commands as during development
+Launch some frequently used ad-hoc commands
 ```bash
 
 fig run web npm prune
 fig run web npm install
 
 fig run db /bin/sh -c "mongo 192.168.50.4:27017"
+
 ```
