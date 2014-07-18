@@ -1,7 +1,7 @@
 web:
   build: .
   links:
-      - db:db
+      - es:es
   ports:
     - "8080:8080"
     - "8081:8081"
@@ -17,3 +17,8 @@ db:
   image: dockerfile/mongodb
   ports:
       - "27017:27017"
+es:
+  image: dockerfile/elasticsearch
+  ports:
+    - "9200:9200"
+    - "9300:9300"
