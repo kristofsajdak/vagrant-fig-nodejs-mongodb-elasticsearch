@@ -2,7 +2,7 @@
 Getting Started
 ---------------
 
-Install vagrant-cachier to cache packages across various VMs
+OPTIONAL : Install vagrant-cachier to cache packages across various VMs
 
 ```bash
 vagrant plugin install vagrant-cachier
