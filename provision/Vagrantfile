@@ -6,6 +6,12 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "phusion-open-ubuntu-14.04-amd64"
 
+    if Vagrant.has_plugin?("vagrant-cachier")
+        # Configure cached packages to be shared between instances of the same base box.
+        # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+        config.cache.scope = :box
+    end
+
     config.vm.network "private_network", ip: "192.168.50.4"
 
     config.vm.provision "docker" do |d|
@@ -14,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", path: "provision_fig.sh"
     config.vm.provision "file", source: "fig.yml", destination: "fig.yml"
     config.vm.provision "file", source: "Dockerfile", destination: "Dockerfile"
+    config.vm.provision "file", source: "supervisord.conf", destination: "supervisord.conf"
 
     pkg_cmd = "fig run web npm install ; fig up -d"
     config.vm.provision "shell", inline: pkg_cmd, run: "always"

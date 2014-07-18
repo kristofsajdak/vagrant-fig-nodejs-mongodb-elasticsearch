@@ -2,15 +2,29 @@
 Getting Started
 ---------------
 
+Install vagrant-cachier to cache packages across various VMs
+
+```bash
+vagrant plugin install vagrant-cachier
+```
+
+Then
+
 ```bash
 cd provision
 vagrant up
 ```
 
-When vagrant is up and running, type in following url to verify
+When vagrant is up and running, type in following url to verify :
 
 ```
 http://192.168.50.4:8080/
+```
+
+launch node-inspector :
+
+```
+http://192.168.50.4:8081/debug
 ```
 
 Ad-hoc commands
