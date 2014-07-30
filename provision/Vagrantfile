@@ -13,18 +13,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.network "private_network", ip: "192.168.50.4"
+    config.vm.synced_folder "../", "/src"
 
     config.vm.provision "docker" do |d|
     end
 
     config.vm.provision "shell", path: "provision_fig.sh"
-    config.vm.provision "file", source: "fig.yml", destination: "fig.yml"
-    config.vm.provision "file", source: "Dockerfile", destination: "Dockerfile"
-    config.vm.provision "file", source: "supervisord.conf", destination: "supervisord.conf"
 
-    pkg_cmd = "fig run web npm install ; fig up -d"
+    pkg_cmd =  "cd /src/provision ; fig run web npm install ; fig up -d"
     config.vm.provision "shell", inline: pkg_cmd, run: "always"
 
-    config.vm.synced_folder "../", "/src"
 
 end
