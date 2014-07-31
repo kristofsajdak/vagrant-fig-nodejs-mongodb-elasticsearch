@@ -55,6 +55,11 @@ ssh into the Vagrant box
 vagrant ssh
 ```
 
+cd into the /src/provision directory ( where the fig.yml, supervisord.conf and Dockerfiles are )
+```bash
+cd /src/provision
+```
+
 Launch some often required ad-hoc commands
 ```bash
 
