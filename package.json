@@ -1,15 +1,15 @@
 {
-  "name": "nodejs-api-simple",
-  "description": "A simple API with Nodejs and Express 4",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-      "express": "~4.4.1",
-      "morgan": "~1.1.1",
-      "body-parser": "~1.4.3",
-      "lodash": "~2.4.1",
-      "underscore.string": "~2.3.2",
-      "mongoose": "3.8.12",
-      "node-uuid": "1.4.1"
-  }
+    "name": "nodejs-api-simple",
+    "description": "A simple API with Nodejs and Express 4",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "~4.4.1",
+        "morgan": "~1.1.1",
+        "body-parser": "~1.5.2",
+        "lodash": "~2.4.1",
+        "underscore.string": "~2.3.2",
+        "mongoose": "3.8.12",
+        "node-uuid": "1.4.1"
+    }
 }

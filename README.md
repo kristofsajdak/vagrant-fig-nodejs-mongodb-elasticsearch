@@ -32,17 +32,22 @@ vagrant up
 
 
 
-Check Nodejs and Express:
+Express running on Nodejs :
 ```
 http://192.168.50.4:8080/
 ```
 
-Launch node-inspector:
+node-inspector:
 ```
 http://192.168.50.4:8081/debug
 ```
 
-Check Elasticsearch:
+logs:
+```
+http://192.168.50.4:8080/supervisord-node-dev.log
+```
+
+Elasticsearch:
 ```
 http://192.168.50.4:9200
 ```
@@ -55,7 +60,7 @@ ssh into the Vagrant box
 vagrant ssh
 ```
 
-cd into the /src/provision directory ( where the fig.yml, supervisord.conf and Dockerfiles are )
+cd into the /src/provision directory ( where the fig.yml, supervisord.conf and Dockerfiles live )
 ```bash
 cd /src/provision
 ```
