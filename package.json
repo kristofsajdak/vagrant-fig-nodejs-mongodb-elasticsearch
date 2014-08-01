@@ -10,6 +10,9 @@
         "lodash": "~2.4.1",
         "underscore.string": "~2.3.2",
         "mongoose": "3.8.12",
-        "node-uuid": "1.4.1"
+        "node-uuid": "1.4.1",
+        "longjohn": "*",
+        "prettyjson": "*",
+        "express-domain-middleware": "0.1.0"
     }
 }
