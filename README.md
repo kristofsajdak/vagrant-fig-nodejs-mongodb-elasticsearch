@@ -42,7 +42,7 @@ node-inspector:
 http://192.168.50.4:8081/debug
 ```
 
-logs:
+logs: ( TODO expose the log dir rather than the single file, implement rolling daily behaviour)
 ```
 http://192.168.50.4:8080/supervisord-node-dev.log
 ```

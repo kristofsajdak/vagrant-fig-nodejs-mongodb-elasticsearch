@@ -16,7 +16,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(morgan('dev'));
 
 if (node_env === 'sandbox') {
-    app.use(express.static(__dirname + '/logs'));
+    app.use(express.static(__dirname + '/public/logs'));
 }
 
 app.get('/', function (req, res) {
