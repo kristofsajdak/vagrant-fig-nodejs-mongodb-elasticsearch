@@ -30,7 +30,11 @@ cd vagrant-fig-nodejs-mongodb-elasticsearch/provision
 vagrant up
 ```
 
-
+ssh into the machine, install npm dependencies and fig up
+```bash
+vagrant ssh
+cd /src/provision && fig run web npm install && fig up -d
+```
 
 Express running on Nodejs :
 ```
@@ -42,9 +46,9 @@ node-inspector:
 http://192.168.50.4:8081/debug
 ```
 
-logs: ( TODO expose the log dir rather than the single file, implement rolling daily behaviour)
+logs: ( TODO allow dir browsing to discover the archived files )
 ```
-http://192.168.50.4:8080/supervisord-node-dev.log
+http://192.168.50.4:8080/logs/supervisord-node-dev.log
 ```
 
 Elasticsearch:

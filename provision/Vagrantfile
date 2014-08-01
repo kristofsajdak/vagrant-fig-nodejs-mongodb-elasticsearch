@@ -20,8 +20,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "shell", path: "provision_fig.sh"
 
-    pkg_cmd =  "cd /src/provision ; fig run web npm install ; fig up -d"
-    config.vm.provision "shell", inline: pkg_cmd, run: "always"
-
 
 end
