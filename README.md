@@ -46,9 +46,9 @@ node-inspector:
 http://192.168.50.4:8081/debug
 ```
 
-logs: ( TODO allow dir browsing to discover the archived files )
+logs:
 ```
-http://192.168.50.4:8080/logs/supervisord-node-dev.log
+http://192.168.50.4:8080/logs/
 ```
 
 Elasticsearch:

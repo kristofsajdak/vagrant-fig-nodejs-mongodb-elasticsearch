@@ -6,7 +6,7 @@ require('longjohn');
 var woodman = require('woodman');
 
 var mongodb_url;
-mongodb_url = process.env.MONGODB_URL + '/test';
+mongodb_url = process.env.MONGODB_URL + '/dealer-api';
 
 mongoose.connect(mongodb_url);
 
@@ -20,7 +20,11 @@ app.use(domainMiddleware);
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 if (node_env === 'sandbox') {
-    app.use('/logs', express.static(__dirname + '/public/logs'));
+    var serveIndex = require('serve-index');
+    var localPath = __dirname + '/public/logs';
+    app.use('/logs', serveIndex(localPath));
+    app.use('/logs', express.static(localPath));
+
 }
 
 woodman.load('console %domain - %message');
