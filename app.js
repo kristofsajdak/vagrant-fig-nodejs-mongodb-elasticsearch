@@ -8,8 +8,6 @@ var woodman = require('woodman');
 var mongodb_url = process.env.MONGOHQ_URL;
 var node_env = process.env.NODE_ENV;
 
-console.log('blabla');
-
 mongoose.connect(mongodb_url);
 
 var fortune = require('fortune');
@@ -60,7 +58,7 @@ app.use(function (err, req, res, next) {
 });
 
 var port = Number(process.env.PORT);
-app.listen(port);
+fortune_app.listen(port);
 
 
 
