@@ -4,6 +4,12 @@ var uuid = require('node-uuid');
 
 module.exports = function (fortune_app, mongoose) {
 
+
+    fortune_app.resource('brand', {
+        code: String,
+        description: String
+    });
+
     fortune_app.resource('region', {
         code: String,
         description: String
@@ -46,7 +52,7 @@ module.exports = function (fortune_app, mongoose) {
         warranty_number: String
     });
 
-/*    fortune_app.resource('business_hours', {
+    fortune_app.resource('business_hours', {
         mon_open: String,
         mon_close: String,
         tue_open: String,
@@ -61,7 +67,7 @@ module.exports = function (fortune_app, mongoose) {
         sat_close: String,
         sun_open: String,
         sun_close: String
-    });*/
+    });
 
     fortune_app.resource('dealer', {
         code: String,
@@ -74,11 +80,11 @@ module.exports = function (fortune_app, mongoose) {
         zip: String,
         phone_area: String,
         phone_number: String,
-        parent: {ref: 'dealer', inverse: 'parent'},
+        /*parent: {ref: 'dealer', inverse: 'parent'},
         bill_to: {ref: 'dealer', inverse: 'bill_to'},
-        ship_to: {ref: 'dealer', inverse: 'ship_to'},
+        ship_to: {ref: 'dealer', inverse: 'ship_to'},*/
         current_contracts: [{ref: 'contract', inverse: 'current_contracts'}],
-        phone_numbers: [{ref: 'phone_number', inverse: 'phone_numbers'}]/*,
+        /*phone_numbers: [{ref: 'phone_number', inverse: 'phone_numbers'}],
         business_hours: {ref: 'business_hours', inverse: 'business_hours'},
         dealer_misc:{ref: 'dealer_misc', inverse: 'dealer_misc'},
         current_lines_of_business: [{ref: 'line_of_business', inverse: 'current_lines_of_business'}],
