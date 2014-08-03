@@ -3,4 +3,4 @@
 **/.git/**
 **/node_modules/**
 **/provision/**
-**/functional_tests/**
+**/populate/**

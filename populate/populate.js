@@ -16,13 +16,13 @@ var do_request = function (path, method, body) {
 };
 
 function map_code_with_id(results, map, resource) {
-    console.log(results);
+    //console.log(results);
     var id = JSON.parse(results[0].body)[resource][0].id;
     var code = JSON.parse(results[0].body)[resource][0].code;
     map[code] = id;
 }
 
-var uri = 'http://192.168.50.4:8080';
+var uri = process.argv[2];
 
 
 var regions = {};
