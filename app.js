@@ -8,6 +8,8 @@ var woodman = require('woodman');
 var mongodb_url = process.env.MONGOHQ_URL;
 var node_env = process.env.NODE_ENV;
 
+console.log('blabla');
+
 mongoose.connect(mongodb_url);
 
 var fortune = require('fortune');
