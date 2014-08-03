@@ -1,0 +1,23 @@
+curl -H "Content-Type: application/vnd.api+json" -v -d '{
+                                                            "countries": [
+                                                                {
+                                                                    "code": "US",
+                                                                    "description": "United States"
+                                                                }
+                                                            ]
+                                                        }' http://192.168.50.4:8080/countries
+
+curl -H "Content-Type: application/vnd.api+json" -v -d '{"dealers": [
+                                                            {
+                                                                "code": "60000",
+                                                                "name": "Alexander",
+                                                                "address1": "windmolstr 13",
+                                                                "address2": "",
+                                                                "city": "Koersel",
+                                                                "zip": "3582",
+                                                                "links": {
+                                                                    "address_country": "53dd1dcba006f474002c0865"
+                                                                }
+                                                            }
+                                                        ]
+                                                        }' http://192.168.50.4:8080/dealers

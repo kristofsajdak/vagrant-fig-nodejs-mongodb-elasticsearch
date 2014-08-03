@@ -4,16 +4,25 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "express": "~4.4.1",
-        "morgan": "~1.1.1",
-        "body-parser": "~1.5.2",
+        "fortune": "~0.2.4",
+        "fortune-mongodb": "~0.2.2",
+        "body-parser": "~1.4.3",
+        "express": "~4.6.1",
         "lodash": "~2.4.1",
+        "morgan": "~1.1.1",
         "underscore.string": "~2.3.2",
         "mongoose": "~3.8.12",
         "node-uuid": "~1.4.1",
         "longjohn": "~0.2.4",
-        "woodman": "*",
+        "woodman": "~1.1.0",
         "serve-index":"~1.1.5",
         "express-domain-middleware": "~0.1.0"
+    },
+    "devDependencies":{
+        "request":"*",
+        "bluebird":"*"
+    },
+    "engines": {
+        "node": ">=0.10"
     }
 }
