@@ -55,7 +55,7 @@ app.use(function (err, req, res, next) {
 
 });
 
-fortune_app.listen(process.env.PORT);
+app.listen(process.env.PORT);
 
 
 
