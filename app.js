@@ -59,7 +59,8 @@ app.use(function (err, req, res, next) {
 
 });
 
-app.listen(process.env.PORT);
+var port = Number(process.env.PORT);
+app.listen(port);
 
 
 
