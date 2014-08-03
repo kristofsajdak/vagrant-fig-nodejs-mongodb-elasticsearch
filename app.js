@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 require('longjohn');
 var woodman = require('woodman');
 
-var mongodb_url = process.env.MONGODB_URL + '/dealer-api';
+var mongodb_url = process.env.MONGOHQ_URL;
 var node_env = process.env.NODE_ENV;
 
 mongoose.connect(mongodb_url);

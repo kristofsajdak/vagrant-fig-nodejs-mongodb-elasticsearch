@@ -10,7 +10,7 @@ web:
     NODE_ENV: sandbox
     PORT: 8080
     ES_URL: http://192.168.50.4:9200
-    MONGODB_URL: mongodb://192.168.50.4:27017
+    MONGOHQ_URL: mongodb://192.168.50.4:27017/dealer-api
   command: /usr/bin/supervisord
   volumes:
      - /src:/data
