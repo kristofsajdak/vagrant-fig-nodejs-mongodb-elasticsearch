@@ -25,7 +25,7 @@ var uri = 'http://192.168.50.4:8080';
 
 
 var regions = {};
-var insertRegions = function () {
+var insert_regions = function () {
 
     var eu = do_request('/regions', 'POST', {
         "regions": [
@@ -59,7 +59,7 @@ var insertRegions = function () {
 };
 
 var countries = {};
-var insertCountries = function () {
+var insert_countries = function () {
 
     var us = do_request('/countries', 'POST', {
         "countries": [
@@ -90,17 +90,84 @@ var insertCountries = function () {
     })
 };
 
+var state_provinces = {};
+var insert_state_provinces = function () {
+
+    var us = do_request('/state_provinces', 'POST', {
+        "state_provinces": [
+            {
+                "code": "NY",
+                "description": "New York",
+                "links" : {
+                    "country": countries["US"]
+                }
+            }
+        ]
+    });
+
+    var ca = do_request('/state_provinces', 'POST', {
+        "state_provinces": [
+            {
+                "code": "IN",
+                "description": "Indiana",
+                "links" : {
+                    "country": countries["US"]
+                }
+            }
+        ]
+    });
+
+    return Promise.all([ us, ca]).map(function (results) {
+        map_code_with_id(results, state_provinces, 'state_provinces');
+    })
+};
+
+var contract_types = {};
+var insert_contract_types = function () {
+
+    var m = do_request('/contract_types', 'POST', {
+        "contract_types": [
+            {
+                "code": "M",
+                "description": "Machinery"
+            }
+        ]
+    });
+
+    var p = do_request('/contract_types', 'POST', {
+        "contract_types": [
+            {
+                "code": "P",
+                "description": "Parts"
+            }
+        ]
+    });
+
+    return Promise.all([ m, p]).map(function (results) {
+        map_code_with_id(results, contract_types, 'contract_types');
+    })
+};
+
+
 function print() {
     console.log(JSON.stringify(countries));
     console.log(JSON.stringify(regions));
+    console.log(JSON.stringify(state_provinces));
+    console.log(JSON.stringify(contract_types));
 }
 
 Promise.resolve()
     .then(function () {
-        return insertRegions();
+        return insert_regions();
     })
     .then(function () {
-        return insertCountries();
+        return insert_countries();
+    })
+    .then(function () {
+        return insert_state_provinces();
+    })
+    .then(function () {
+        return insert_contract_types();
     })
     .then(function () {
         print();
