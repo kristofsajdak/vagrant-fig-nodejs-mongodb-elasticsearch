@@ -43,6 +43,10 @@ app.use(morgan({ immediate: true, format: ':domain - :method :url' }));
 
 require("./resources")(fortune_app, mongoose);
 
+app.get('/', function(req, res){
+    res.send('hello world !');
+});
+
 app.use(function (err, req, res, next) {
 
     var message = err.stack;
