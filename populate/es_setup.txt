@@ -1,0 +1,317 @@
+curl -XPUT https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api
+curl -XPUT https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/53de8fe6ac73cb02002498a5 \
+-d '{
+        "id": "53de8fe6ac73cb02002498a5",
+        "code": "320005",
+        "name": "Affolder Impl Sales  Inc.",
+        "address1": "6704 S. Us Hwy 27",
+        "address2": "",
+        "city": "Berne",
+        "zip": "46711",
+        "phone_area": "260",
+        "phone_number": "5892964",
+        "address_state_province": {
+            "id": "53de8fd5ac73cb020024989a",
+            "code": "US-IN",
+            "description": "Indiana",
+            "country" : {
+                "id": "53de8fd5ac73cb0200249898",
+                "code": "US",
+                "description": "United States"
+            }
+        },
+        "current_contracts" : {
+            "id" : "1",
+            "code": "CHC"
+        }
+    }'
+
+curl -XDELETE https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/_query?q=*
+
+curl -XDELETE https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_mapping
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_mapping?pretty=true
+curl -XPUT https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_mapping -d '{
+                "dealers" : {
+                    "properties" : {
+                        "address1" : {
+                            "type" : "string"
+                        },
+                        "address_state_province" : {
+                            "type": "nested",
+                            "properties" : {
+                                "code" : {
+                                    "type" : "string",
+                                    "index" : "not_analyzed"
+                                },
+                                "country" : {
+                                    "type": "nested",
+                                    "properties" : {
+                                        "code" : {
+                                            "type" : "string"
+                                        },
+                                        "description" : {
+                                            "type" : "string"
+                                        },
+                                        "id" : {
+                                            "type" : "string"
+                                        }
+                                    }
+                                },
+                                "description" : {
+                                    "type" : "string"
+                                },
+                                "id" : {
+                                    "type" : "string"
+                                }
+                            }
+                        },
+                        "age" : {
+                            "type" : "long"
+                        },
+                        "city" : {
+                            "type" : "string"
+                        },
+                        "code" : {
+                            "type" : "string"
+                        },
+                         "current_contracts" : {
+                            "type": "nested",
+                            "properties" : {
+                              "code" : {
+                                "type" : "string"
+                              },
+                               "id" : {
+                                "type" : "string"
+                               }
+                            }
+                          },
+                        "id" : {
+                            "type" : "string"
+                        },
+                        "name" : {
+                            "type" : "string"
+                        },
+                        "phone_area" : {
+                            "type" : "string"
+                        },
+                        "phone_number" : {
+                            "type" : "string"
+                        },
+                        "zip" : {
+                            "type" : "string"
+                        }
+                    }
+                }
+            }'
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+  "query": {
+    "filtered": {
+      "query": {"match_all": {}}
+    }
+  }
+}'
+
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+  "query" : {
+           "bool": {
+                      "should": [],
+                      "must_not": [],
+                      "must": [
+                      {
+                          "nested": {
+                              "query": {
+                                  "query_string": {
+                                      "fields": ["address_state_province.code"],
+                                      "query": "U*"
+                                  }
+                              },
+                              "path": "address_state_province"
+                          }
+                      },
+                      {
+                          "term":{
+                                "zip":"46711"
+                          }
+                      }
+                      ]
+                  }
+      }
+}'
+
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+
+  "query" : { "match_all" : {} },
+  "filter" : {
+    "and": [
+              {"nested" : {
+                  "path" : "address_state_province",
+                  "filter" : {
+                          "query" : {
+                                     "query_string": {
+                                           "fields": ["address_state_province.code"],
+                                           "query": "US-NY"
+                                       }
+                          }
+                  }
+              }},
+              {"nested" : {
+                    "path" : "address_state_province.country",
+                    "filter" : {
+                            "query" : {
+                                       "query_string": {
+                                             "fields": ["address_state_province.country.code"],
+                                             "query": "US"
+                                         }
+                            }
+                    }
+                }}
+              ]
+          }
+}'
+
+
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+
+  "query" : { "match_all" : {} },
+  "filter" : {
+    "and": [
+              {"nested" : {
+                  "path" : "address_state_province",
+                  "filter" : {
+                    "and": [
+                          {"query" : {
+                                     "query_string": {
+                                           "fields": ["address_state_province.code"],
+                                           "query": "US-IN"
+                                       }
+                          }},
+                          {"query" : {
+                                       "query_string": {
+                                             "fields": ["address_state_province.description"],
+                                             "query": "Indiana"
+                                         }
+                            }}
+                          ]
+                  }
+              }},
+              {"nested" : {
+                                "path" : "current_contracts",
+                                "filter" : {
+                                  "and": [
+                                        {"query" : {
+                                                   "query_string": {
+                                                         "fields": ["current_contracts.code"],
+                                                         "query": "CHC"
+                                                     }
+                                        }}
+                                        ]
+                                }
+                            }}
+              ]
+          }
+}'
+
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+
+  "query" : { "match_all" : {} },
+  "filter" : {
+    "and": [
+              {"nested" : {
+                  "path" : "address_state_province",
+                  "filter" : {
+                    "and": [
+                          {"query" : {
+                                     "query_string": {
+                                           "fields": ["address_state_province.code"],
+                                           "query": "US-IN"
+                                       }
+                          }}
+                          ]
+                  }
+              }},
+              {"nested" : {
+                                "path" : "current_contracts",
+                                "filter" : {
+                                  "and": [
+                                        {"query" : {
+                                                   "query_string": {
+                                                         "fields": ["current_contracts.code"],
+                                                         "query": "CHC"
+                                                     }
+                                        }}
+                                        ]
+                                }
+                            }}
+              ]
+          },
+   "facets": {
+      "tf": {
+        "terms": {
+          "field": "address_state_province.code"
+        },
+        "nested": "address_state_province"
+      }
+    }
+}'
+
+
+
+curl -XGET https://ekkmc2bp3va86@smoke-9839918.us-east-1.bonsai.io/dealer-api/dealers/_search -d '
+{
+ query: {
+        "filtered" : {
+           "query": { "match_all" : {} },
+           "filter": {
+                "and": [
+                          {"nested" : {
+                              "path" : "address_state_province",
+                              "filter" : {
+                                "and": [
+                                      {"query" : {
+                                                 "query_string": {
+                                                       "fields": ["address_state_province.code"],
+                                                       "query": "US-IN"
+                                                   }
+                                      }}
+                                      ]
+                              }
+                          }},
+                          {"nested" : {
+                                            "path" : "current_contracts",
+                                            "filter" : {
+                                              "and": [
+                                                    {"query" : {
+                                                               "query_string": {
+                                                                     "fields": ["current_contracts.code"],
+                                                                     "query": "CHC"
+                                                                 }
+                                                    }}
+                                                    ]
+                                            }
+                                        }}
+                          ]
+            }
+        }
+    },
+   "facets": {
+      "tf": {
+        "terms": {
+          "field": "address_state_province.country.code"
+        },
+        "nested": "address_state_province.country"
+      }
+    }
+}'
+
+
+
