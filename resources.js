@@ -71,11 +71,14 @@ module.exports = function (fortune_app, mongoose) {
         sun_close: String
     });
 
-    app.use('/dealers/code/:code', function (req, res, next) {
+    // hack - todo fork fortunjs and invoke function handlers instead
+    app.get('/dealers/code/:code', function (req, res, next) {
+        console.log(app);
         mongoose.connection.collection('dealers').find({ code: req.params.code}, { _id: 1}).toArray(function (err, ids) {
             if (ids.length === 0) {
                 return res.status(404).send('Not found');
             } else {
+                console.log(req);
                 var idsParam = _.pluck(ids, '_id').map(function (objectId) {
                     return objectId.toString();
                 }).join(',');
