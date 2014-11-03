@@ -1,6 +1,7 @@
 
 
-Kickstart your next Nodejs-Express-Mongodb-Elasticsearch project with Docker and Fig.
+Kickstart your next Nodejs-Express-Mongodb-Elasticsearch project with Vagrant and Fig. 
+Node debugging facilities are provided through node-inspector, sources are auto-reloaded with Forever 
 
 Works on every OS where you can install Vagrant ( Windows, Mac and Linux )
 
