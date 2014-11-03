@@ -5,18 +5,18 @@ var mongoose = require('mongoose');
 require('longjohn');
 var woodman = require('woodman');
 
-var mongodb_url = process.env.MONGOHQ_URL || process.env.MONGODB_URL;
+var mongodb_url = process.env.MONGODB_URL;
+var es_url = process.env.ES_URL;
 var node_env = process.env.NODE_ENV;
 
 mongoose.connect(mongodb_url);
 
-var fortune = require('fortune');
 var options = {
     adapter: 'mongodb',
     connectionString: mongodb_url
 };
-var fortune_app = fortune(options);
-var app = fortune_app.router;
+
+var app = express();
 
 var domainMiddleware = require('express-domain-middleware');
 app.use(domainMiddleware);
@@ -39,8 +39,6 @@ morgan.token('domain', function (req, res) {
 });
 app.use(morgan({ immediate: true, format: ':domain - :method :url' }));
 
-require("./resources")(fortune_app, mongoose);
-
 app.get('/', function(req, res){
     res.send('hello world !');
 });
@@ -58,7 +56,14 @@ app.use(function (err, req, res, next) {
 });
 
 var port = Number(process.env.PORT);
-fortune_app.listen(port);
+var server = app.listen(port, function () {
+
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Example app listening at http://%s:%s', host, port)
+
+})
 
 
 

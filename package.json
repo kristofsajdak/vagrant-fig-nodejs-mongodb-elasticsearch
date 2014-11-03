@@ -8,8 +8,6 @@
     "express": "~4.6.1",
     "express-domain-middleware": "~0.1.0",
     "express-reverse": "~0.2.1",
-    "fortune": "~0.2.4",
-    "fortune-mongodb": "~0.2.2",
     "lodash": "~2.4.1",
     "longjohn": "~0.2.4",
     "mongoose": "~3.8.12",
