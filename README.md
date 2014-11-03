@@ -33,7 +33,7 @@ vagrant up
 ssh into the machine, install npm dependencies and fig up
 ```bash
 vagrant ssh
-cd /src/provision && fig run web npm install && fig up -d
+cd /vagrant && fig run web npm install && fig up -d
 ```
 
 Express running on Nodejs :
@@ -64,9 +64,9 @@ ssh into the Vagrant box
 vagrant ssh
 ```
 
-cd into the /src/provision directory ( where the fig.yml, supervisord.conf and Dockerfiles live )
+cd into the /vagrant directory ( this is mapped to the directory with the Vagrantfile, and where the fig.yml, supervisord.conf and Dockerfiles are kept as well )
 ```bash
-cd /src/provision
+cd /vagrant
 ```
 
 Launch some often required ad-hoc commands
