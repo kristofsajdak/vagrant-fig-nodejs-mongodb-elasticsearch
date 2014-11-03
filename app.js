@@ -25,7 +25,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 if (node_env === 'sandbox') {
     var serveIndex = require('serve-index');
-    var localPath = __dirname + '/public/logs';
+    var localPath = __dirname + '/provision/logs';
     app.use('/logs', serveIndex(localPath));
     app.use('/logs', express.static(localPath));
 
