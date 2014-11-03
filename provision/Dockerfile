@@ -3,6 +3,7 @@ FROM dockerfile/nodejs
 RUN npm install -g forever
 RUN npm install -g node-inspector
 
+RUN apt-get update
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
 
